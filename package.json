@@ -43,6 +43,9 @@
       "esbuild",
       "unrs-resolver",
       "vue-demi"
-    ]
+    ],
+    "overrides": {
+      "esbuild": "^0.25.0"
+    }
   }
 }
