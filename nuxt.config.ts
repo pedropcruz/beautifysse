@@ -31,6 +31,7 @@ export default defineNuxtConfig({
 
   hub: {
     db: {
+      dialect: 'sqlite',
       driver: process.env.NODE_ENV === 'production' ? 'd1' : undefined,
       connection: {
         databaseId: '6582c564-edef-4146-af80-a76b0c680400'
