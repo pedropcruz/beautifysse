@@ -80,6 +80,11 @@ jobs:
       - run: pnpm run build
         env:
           NITRO_PRESET: cloudflare-pages
+      - name: Create Cloudflare Pages Project
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: pnpm exec wrangler pages project create beautify-event-stream --production-branch main || true
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
