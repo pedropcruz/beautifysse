@@ -37,7 +37,8 @@
     "playwright": "^1.57.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.17",
-    "vue-tsc": "^3.2.1"
+    "vue-tsc": "^3.2.1",
+    "wrangler": "^4.59.2"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
