@@ -30,7 +30,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-01-15',
 
   hub: {
-    db: 'sqlite'
+    db: {
+      driver: process.env.NODE_ENV === 'production' ? 'd1' : undefined,
+      connection: {
+        databaseId: '6582c564-edef-4146-af80-a76b0c680400'
+      }
+    }
   },
 
   eslint: {
