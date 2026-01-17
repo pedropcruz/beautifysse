@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { detectParser, AvailableParsers } from '../../utils/parsers'
-import { exportToJSON, exportToCSV, exportToRawText, downloadFile, generateFilename } from '../../utils/exporters'
+import {
+  exportToJSON,
+  exportToCSV,
+  exportToRawText,
+  downloadFile,
+  generateFilename
+} from '../../utils/exporters'
 import { getExampleById } from '../../data/examples'
 import type { ParsedEvent } from '../../types/sse'
 import type { StreamParser } from '../../types/parser'
@@ -222,15 +228,16 @@ function handleExport(format: ExportFormat) {
 <template>
   <div class="h-screen flex flex-col bg-gray-50 dark:bg-gray-950">
     <header
-      class="p-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex flex-wrap items-center justify-between gap-4"
+      class="p-3 md:p-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex flex-wrap items-center justify-between gap-2 md:gap-4"
     >
-      <div class="flex items-center gap-4">
-        <h1 class="font-bold text-xl flex items-center gap-2">
+      <div class="flex items-center gap-2 md:gap-4">
+        <h1 class="font-bold text-lg md:text-xl flex items-center gap-2">
           <UIcon
             name="i-lucide-activity"
             class="text-primary-500"
           />
-          Beautify Event Stream
+          <span class="hidden sm:inline">Beautify Event Stream</span>
+          <span class="sm:hidden">Beautify SSE</span>
         </h1>
 
         <USelect
@@ -238,7 +245,7 @@ function handleExport(format: ExportFormat) {
           :items="parserOptions"
           option-attribute="label"
           value-attribute="value"
-          class="w-40"
+          class="w-28 md:w-40"
           size="xs"
         />
 
@@ -247,19 +254,20 @@ function handleExport(format: ExportFormat) {
           color="gray"
           variant="subtle"
           size="xs"
+          class="hidden md:flex"
         >
           Detected: {{ activeParser.name }}
         </UBadge>
       </div>
 
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 md:gap-4">
         <div class="flex items-center gap-2">
           <UInput
             v-model="searchQuery"
             icon="i-lucide-search"
-            placeholder="Find (Enter for next)"
+            placeholder="Find"
             size="xs"
-            class="w-48"
+            class="w-24 md:w-48"
             @keydown.enter="handleSearchEnter"
           />
           <div
@@ -270,15 +278,15 @@ function handleExport(format: ExportFormat) {
           </div>
           <div
             v-else-if="searchQuery"
-            class="text-xs text-red-500 whitespace-nowrap"
+            class="text-xs text-red-500 whitespace-nowrap hidden md:block"
           >
             0 results
           </div>
         </div>
-        <div class="text-sm text-gray-500 whitespace-nowrap">
+        <div class="text-xs md:text-sm text-gray-500 whitespace-nowrap">
           {{ allEvents.length }} Events
         </div>
-        <div class="flex items-center gap-2">
+        <div class="hidden md:flex items-center gap-2">
           <UButton
             v-if="rawInput"
             :loading="isSharing"
@@ -328,18 +336,28 @@ function handleExport(format: ExportFormat) {
       </div>
     </header>
 
-    <main class="flex-1 flex flex-col md:flex-row overflow-hidden">
+    <main class="flex-1 flex flex-col md:flex-row overflow-hidden pb-14 md:pb-0">
       <div
-        class="w-full md:w-1/3 p-4 flex flex-col border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900"
+        class="w-full md:w-1/3 p-4 flex flex-col border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 min-h-45 md:min-h-0"
       >
         <div class="flex items-center justify-between mb-2">
           <label class="font-medium text-sm text-gray-700 dark:text-gray-200">Raw Stream Input</label>
           <NuxtLink
+            v-if="!rawInput"
             to="/help"
             class="text-xs text-gray-400 hover:text-primary-500 transition-colors"
           >
             New to SSE? See examples →
           </NuxtLink>
+          <UButton
+            v-else
+            icon="i-lucide-x"
+            label="Clear"
+            size="xs"
+            color="primary"
+            variant="ghost"
+            @click="rawInput = ''"
+          />
         </div>
         <UTextarea
           v-model="rawInput"
@@ -349,15 +367,15 @@ data: world
 
 OR Vercel AI Protocol:
 0: &quot;Hello&quot;"
-          class="flex-1 font-mono text-xs"
-          :ui="{ wrapper: 'h-full', base: 'h-full resize-none' }"
+          class="flex-1 font-mono text-sm md:text-xs"
+          :ui="{ wrapper: 'h-full min-h-[120px]', base: 'h-full resize-none' }"
         />
       </div>
 
       <div class="flex-1 p-4 overflow-y-auto bg-gray-50 dark:bg-gray-950 scroll-smooth">
         <div
           v-if="allEvents.length === 0"
-          class="h-full flex flex-col items-center justify-center text-center p-8 text-gray-400"
+          class="md:h-full flex flex-col items-center justify-center text-center p-4 md:p-8 text-gray-400"
         >
           <div class="max-w-md mx-auto space-y-6">
             <div class="flex justify-center mb-4">
@@ -531,8 +549,58 @@ OR Vercel AI Protocol:
       </div>
     </main>
 
+    <!-- Mobile Bottom Bar -->
+    <div
+      class="md:hidden fixed bottom-0 left-0 right-0 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-2 flex items-center justify-around z-50"
+    >
+      <UButton
+        v-if="rawInput"
+        :loading="isSharing"
+        icon="i-lucide-share-2"
+        label="Share"
+        size="xs"
+        color="white"
+        variant="solid"
+        @click="shareStream"
+      />
+      <UDropdownMenu
+        v-if="allEvents.length > 0"
+        :items="exportOptions"
+        :popper="{ placement: 'top' }"
+      >
+        <UButton
+          icon="i-lucide-download"
+          label="Export"
+          size="xs"
+          color="white"
+          variant="solid"
+        />
+        <template #item="{ item }">
+          <button
+            class="flex items-center gap-2 w-full px-2 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
+            @click="handleExport(item.value as ExportFormat)"
+          >
+            <UIcon
+              :name="item.icon"
+              class="w-4 h-4"
+            />
+            {{ item.label }}
+          </button>
+        </template>
+      </UDropdownMenu>
+      <UButton
+        to="/help"
+        icon="i-lucide-help-circle"
+        label="Help"
+        size="xs"
+        color="neutral"
+        variant="ghost"
+      />
+      <ThemeToggle />
+    </div>
+
     <footer
-      class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-2 text-center text-xs text-gray-500"
+      class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-2 text-center text-xs text-gray-500 hidden md:block"
     >
       done by
       <a
