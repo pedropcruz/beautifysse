@@ -1,8 +1,3 @@
 name = "beautify-event-stream"
 pages_build_output_dir = "dist"
 compatibility_date = "2025-01-15"
-
-[[d1_databases]]
-binding = "DB"
-database_name = "beautify-event-stream-db"
-database_id = "6582c564-edef-4146-af80-a76b0c680400"
