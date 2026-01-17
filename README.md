@@ -1,60 +1,95 @@
-# Nuxt Starter Template
+# Beautify Event Stream
 
 [![Nuxt UI](https://img.shields.io/badge/Made%20with-Nuxt%20UI-00DC82?logo=nuxt&labelColor=020420)](https://ui.nuxt.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Use this template to get started with [Nuxt UI](https://ui.nuxt.com) quickly.
+> Like Beautify JSON, but for Event Streams.
 
-- [Live demo](https://starter-template.nuxt.dev/)
-- [Documentation](https://ui.nuxt.com/docs/getting-started/installation/nuxt)
+## About
 
-<a href="https://starter-template.nuxt.dev/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png">
-    <img alt="Nuxt Starter Template" src="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png">
-  </picture>
-</a>
+Beautify Event Stream is a debugging and visualization tool for Server-Sent Events (SSE). Raw SSE output is difficult to read and debug, especially when dealing with minified JSON or AI streaming responses. This tool parses and formats streams into a human-readable structure with syntax highlighting and advanced filtering capabilities.
 
-> The starter template for Vue is on https://github.com/nuxt-ui-templates/starter-vue.
+Perfect for debugging:
+- Vercel AI SDK streams
+- OpenAI streaming responses
+- Custom SSE implementations
+- Live chat applications
+- Real-time data feeds
+
+## Features
+
+- **Auto-detection**: Automatically detects Standard SSE or Vercel AI SDK format
+- **JSON Formatting**: Auto-prettifies JSON payloads with syntax highlighting
+- **Syntax Highlighting**: Color-coded display for better readability
+- **Search & Filter**: Quickly find errors or specific events within large streams
+- **Export Options**: Export parsed events to JSON, CSV, or raw text
+- **Share Streams**: Generate shareable URLs to collaborate on debugging
+- **Dark/Light Mode**: Toggle between themes for comfortable viewing
+- **Event Metadata**: View event IDs, types, and size information
 
 ## Quick Start
 
-```bash [Terminal]
-npm create nuxt@latest -- -t github:nuxt-ui-templates/starter
-```
-
-## Deploy your own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-name=starter&repository-url=https%3A%2F%2Fgithub.com%2Fnuxt-ui-templates%2Fstarter&demo-image=https%3A%2F%2Fui.nuxt.com%2Fassets%2Ftemplates%2Fnuxt%2Fstarter-dark.png&demo-url=https%3A%2F%2Fstarter-template.nuxt.dev%2F&demo-title=Nuxt%20Starter%20Template&demo-description=A%20minimal%20template%20to%20get%20started%20with%20Nuxt%20UI.)
-
-## Setup
-
-Make sure to install the dependencies:
-
 ```bash
-pnpm install
+bun install
+bun dev
 ```
 
-## Development Server
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Start the development server on `http://localhost:3000`:
+## Usage
 
+1. **Paste your raw SSE stream** into the input area
+2. **Auto-formatting**: The tool automatically detects the format and displays formatted output
+3. **Search**: Type in the search box to highlight matching events (press Enter for next match)
+4. **Export**: Click "Export" to download as JSON, CSV, or raw text
+5. **Share**: Click "Share" to generate a shareable URL
+
+## Tech Stack
+
+- **Frontend**: Nuxt 4, Vue 3, Nuxt UI
+- **Backend**: Nuxt Server Routes
+- **Runtime**: Bun
+- **Database**: PostgreSQL
+- **Deployment**: Cloudflare Pages
+- **Testing**: Vitest, Playwright
+- **Language**: TypeScript
+
+## Development
+
+### Install Dependencies
 ```bash
-pnpm dev
+bun install
 ```
 
-## Production
-
-Build the application for production:
-
+### Development Server
 ```bash
-pnpm build
+bun dev
 ```
 
-Locally preview production build:
-
+### Build for Production
 ```bash
-pnpm preview
+bun run build
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Run Tests
+```bash
+bun test
+```
+
+### Lint & Typecheck
+```bash
+bun lint
+bun typecheck
+```
+
+## Contributing
+
+If you find any bugs or have suggestions for new features, please open a pull request!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+Made with ❤️ by [Pedro Cruz](https://pedropcruz.pt)
