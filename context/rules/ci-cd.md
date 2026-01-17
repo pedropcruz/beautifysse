@@ -29,12 +29,12 @@
 *   `CLOUDFLARE_API_TOKEN` - Generated in Cloudflare dashboard (Cloudflare Pages > Edit permissions)
 
 ## Deployment Command
-```bash
-pnpm exec nuxthub deploy
-```
+The deployment is handled via the `cloudflare/wrangler-action` in GitHub Actions.
 
-This command automatically:
-- Builds the application
-- Deploys to Cloudflare Pages
-- Sets up environment variables
-- Configures the database connection
+1.  **Build**: `NITRO_PRESET=cloudflare-pages pnpm run build`
+2.  **Deploy**: `wrangler pages deploy .output/public`
+
+This workflow:
+- Builds the application for Cloudflare Pages
+- Deploys the `.output/public` directory (which includes server functions)
+- Uses `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` for authentication
