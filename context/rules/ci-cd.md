@@ -2,7 +2,7 @@
 
 ## Platform
 *   **CI/CD**: GitHub Actions
-*   **Runtime**: Bun
+*   **Runtime**: Node.js 20 + pnpm
 *   **Deployment**: Cloudflare Pages (via NuxtHub)
 *   **Database**: PostgreSQL (managed by NuxtHub)
 
@@ -21,7 +21,7 @@
 
 ## Mandates
 1.  **All checks must pass**: Deployment only happens if lint, typecheck, test, and audit all succeed
-2.  **Security first**: `bun audit` is mandatory before deployment
+2.  **Security first**: `pnpm audit` is mandatory before deployment
 3.  **Type safety**: TypeScript errors block deployment
 4.  **Zero configuration**: Use NuxtHub's built-in Cloudflare integration
 
@@ -30,7 +30,7 @@
 
 ## Deployment Command
 ```bash
-bun run nuxthub deploy
+pnpm exec nuxt-hub deploy
 ```
 
 This command automatically:

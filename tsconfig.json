@@ -12,5 +12,12 @@
         "./types/*"
       ]
     }
-  }
+  },
+  "include": [
+    ".nuxt/nuxt.d.ts",
+    "app /**/*",
+    "server /**/*",
+    "shared /**/*",
+    "*.d.ts"
+  ]
 }
