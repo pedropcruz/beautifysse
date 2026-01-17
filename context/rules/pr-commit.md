@@ -18,3 +18,4 @@ All commits must follow the [Conventional Commits](https://www.conventionalcommi
 
 ## Requirements
 *   Include a description of *what* was done and *why* in the PR/Commit body if complex.
+*   **Run Linting**: Always run `pnpm lint --fix` before committing to ensure code style consistency and prevent CI failures.

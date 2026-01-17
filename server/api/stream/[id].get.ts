@@ -2,7 +2,7 @@ import { db } from 'hub:db'
 import { eq } from 'drizzle-orm'
 import * as tables from '~/server/db/schema'
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
 
   if (!id) {

@@ -19,15 +19,15 @@ export default defineNuxtConfig({
     description: 'The ultimate tool to visualize, debug, and format Server-Sent Events (SSE) and Vercel AI SDK streams.'
   },
 
+  alias: {
+    '~/types': './types'
+  },
+
   routeRules: {
     '/': { prerender: true }
   },
 
   compatibilityDate: '2025-01-15',
-
-  alias: {
-    '~/types': './types'
-  },
 
   hub: {
     db: 'postgresql'
