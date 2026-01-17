@@ -32,9 +32,9 @@
 The deployment is handled via the `cloudflare/wrangler-action` in GitHub Actions.
 
 1.  **Build**: `NITRO_PRESET=cloudflare-pages pnpm run build`
-2.  **Deploy**: `wrangler pages deploy .output/public`
+2.  **Deploy**: `wrangler pages deploy dist`
 
 This workflow:
-- Builds the application for Cloudflare Pages
-- Deploys the `.output/public` directory (which includes server functions)
+- Builds the application for Cloudflare Pages (generating output in `dist`)
+- Deploys the `dist` directory (which includes static assets and the `_worker.js`)
 - Uses `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` for authentication
