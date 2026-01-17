@@ -16,6 +16,7 @@
   "dependencies": {
     "@iconify-json/lucide": "^1.2.82",
     "@iconify-json/simple-icons": "^1.2.63",
+    "@libsql/client": "^0.17.0",
     "@nuxt/ui": "^4.3.0",
     "@nuxthub/core": "^0.10.4",
     "drizzle-orm": "^0.45.1",
@@ -52,5 +53,6 @@
       "esbuild": "^0.25.0",
       "undici": "^7.18.2"
     }
-  }
+  },
+  "packageManager": "pnpm@10.23.0+sha512.21c4e5698002ade97e4efe8b8b4a89a8de3c85a37919f957e7a0f30f38fbc5bbdd05980ffe29179b2fb6e6e691242e098d945d1601772cad0fef5fb6411e2a4b"
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { detectParser, AvailableParsers } from '../../utils/parsers'
 import { exportToJSON, exportToCSV, exportToRawText, downloadFile, generateFilename } from '../../utils/exporters'
+import { getExampleById } from '../../data/examples'
 import type { ParsedEvent } from '../../types/sse'
 import type { StreamParser } from '../../types/parser'
 import type { ExportFormat } from '../../types/export'
@@ -55,6 +56,15 @@ const matchingEvents = computed(() => {
 })
 
 onMounted(async () => {
+  const exampleId = route.query.example as string
+  if (exampleId) {
+    const example = getExampleById(exampleId)
+    if (example) {
+      rawInput.value = example.stream
+    }
+    return
+  }
+
   const shareId = route.query.s as string
   if (shareId) {
     try {
@@ -305,6 +315,14 @@ function handleExport(format: ExportFormat) {
               </button>
             </template>
           </UDropdownMenu>
+          <UButton
+            to="/help"
+            icon="i-lucide-help-circle"
+            size="xs"
+            color="neutral"
+            variant="ghost"
+            aria-label="Help and examples"
+          />
           <ThemeToggle />
         </div>
       </div>
@@ -351,6 +369,14 @@ OR Vercel AI Protocol:
               Debug SSE streams and Vercel AI SDK responses instantly. Just paste your raw output
               and let us do the magic.
             </p>
+
+            <UButton
+              to="/help"
+              icon="i-lucide-book-open"
+              label="See Examples"
+              variant="soft"
+              color="primary"
+            />
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
               <div

@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://beautifysse.com',
     name: 'Beautify Event Stream',
-    description: 'The ultimate tool to visualize, debug, and format Server-Sent Events (SSE) and Vercel AI SDK streams.'
+    description: 'The ultimate tool to visualize, debug, and format Server-Sent Events (SSE)'
   },
 
   alias: {
