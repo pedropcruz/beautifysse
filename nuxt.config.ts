@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-01-15',
 
   hub: {
-    db: 'postgresql'
+    database: true
   },
 
   eslint: {

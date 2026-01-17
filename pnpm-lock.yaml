@@ -12,9 +12,6 @@ importers:
 
   .:
     dependencies:
-      '@electric-sql/pglite':
-        specifier: ^0.3.15
-        version: 0.3.15
       '@iconify-json/lucide':
         specifier: ^1.2.82
         version: 1.2.85
@@ -36,9 +33,6 @@ importers:
       nuxt:
         specifier: ^4.2.2
         version: 4.2.2(@electric-sql/pglite@0.3.15)(@parcel/watcher@2.5.4)(@types/node@25.0.9)(@vue/compiler-sfc@3.5.26)(cac@6.7.14)(db0@0.3.4(@electric-sql/pglite@0.3.15)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260117.0)(@electric-sql/pglite@0.3.15)(postgres@3.4.8)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260117.0)(@electric-sql/pglite@0.3.15)(postgres@3.4.8))(eslint@9.39.2(jiti@2.6.1))(ioredis@5.9.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.55.1)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.2(typescript@5.9.3))(yaml@2.8.2)
-      postgres:
-        specifier: ^3.4.8
-        version: 3.4.8
     devDependencies:
       '@nuxt/eslint':
         specifier: ^1.12.1
@@ -6542,7 +6536,8 @@ snapshots:
 
   '@dxup/unimport@0.1.2': {}
 
-  '@electric-sql/pglite@0.3.15': {}
+  '@electric-sql/pglite@0.3.15':
+    optional: true
 
   '@emnapi/core@1.8.1':
     dependencies:
@@ -11747,7 +11742,8 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postgres@3.4.8: {}
+  postgres@3.4.8:
+    optional: true
 
   prelude-ls@1.2.1: {}
 
