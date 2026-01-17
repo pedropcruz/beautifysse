@@ -8,7 +8,7 @@
       "@/*": ["./*"],
       "~~/*": ["./*"],
       "~/types/*": ["./types/*"],
-      "hub:db": ["./.nuxt/hub/db"]
+      "hub:db": ["./types/hub.d.ts"]
     }
   },
   "include": [
