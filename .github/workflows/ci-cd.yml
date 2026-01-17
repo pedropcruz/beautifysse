@@ -74,6 +74,6 @@ jobs:
           node-version: 20
           cache: 'pnpm'
       - run: pnpm install
-      - run: pnpm exec nuxt-hub deploy
+      - run: pnpm exec nuxthub deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

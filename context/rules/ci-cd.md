@@ -30,7 +30,7 @@
 
 ## Deployment Command
 ```bash
-pnpm exec nuxt-hub deploy
+pnpm exec nuxthub deploy
 ```
 
 This command automatically:

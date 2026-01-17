@@ -33,6 +33,7 @@
     "eslint": "^9.39.2",
     "happy-dom": "^20.3.1",
     "husky": "^9.1.7",
+    "nuxthub": "^0.9.4",
     "playwright": "^1.57.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.17",
