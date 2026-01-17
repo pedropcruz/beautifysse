@@ -1,10 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
+    '@nuxthub/core',
     '@nuxt/eslint',
     '@nuxt/ui',
-    '@nuxtjs/seo',
-    '@nuxthub/core'
+    '@nuxtjs/seo'
   ],
 
   devtools: {
@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-01-15',
 
   hub: {
-    database: true
+    db: 'sqlite'
   },
 
   eslint: {
