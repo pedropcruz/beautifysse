@@ -332,7 +332,15 @@ function handleExport(format: ExportFormat) {
       <div
         class="w-full md:w-1/3 p-4 flex flex-col border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900"
       >
-        <label class="font-medium mb-2 text-sm text-gray-700 dark:text-gray-200">Raw Stream Input</label>
+        <div class="flex items-center justify-between mb-2">
+          <label class="font-medium text-sm text-gray-700 dark:text-gray-200">Raw Stream Input</label>
+          <NuxtLink
+            to="/help"
+            class="text-xs text-gray-400 hover:text-primary-500 transition-colors"
+          >
+            New to SSE? See examples →
+          </NuxtLink>
+        </div>
         <UTextarea
           v-model="rawInput"
           placeholder="Paste your raw SSE stream here...
