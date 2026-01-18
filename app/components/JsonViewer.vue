@@ -55,9 +55,13 @@ const highlight = (text: string) => {
 </script>
 
 <template>
-  <div class="font-mono text-xs">
+  <!-- Primitive values: inline span -->
+  <TimestampValue
+    v-if="!isObject"
+    :value="data"
+  >
     <span
-      v-if="!isObject"
+      class="font-mono text-xs"
       :class="valueClasses"
     >
       <span
@@ -69,58 +73,60 @@ const highlight = (text: string) => {
         v-html="highlight(String(data))"
       />
     </span>
+  </TimestampValue>
 
-    <div v-else>
-      <div
-        class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 inline-flex items-center gap-1 rounded px-1 select-none"
-        @click="toggle"
-      >
-        <UIcon
-          :name="
-            isExpanded ? 'i-lucide-chevron-down' : 'i-lucide-chevron-right'
-          "
-          class="w-3 h-3 text-gray-400"
-        />
-        <span class="text-gray-500">{{ Array.isArray(data) ? "[" : "{" }}</span>
-        <span
-          v-if="!isExpanded"
-          class="text-gray-400 italic text-[10px] mx-1"
-        >{{ preview }}</span>
-      </div>
-
-      <div
-        v-if="isExpanded"
-        class="pl-4 border-l border-gray-100 dark:border-gray-800 ml-1"
-      >
-        <div
-          v-for="(value, key) in data"
-          :key="key"
-          class="my-0.5"
-        >
-          <span
-            class="text-blue-600 dark:text-blue-400 mr-1"
-            v-html="`${highlight(String(key))}:`"
-          />
-          <JsonViewer
-            :data="value"
-            :depth="depth + 1"
-            :search-query="searchQuery"
-          />
-        </div>
-      </div>
-
-      <div
-        v-if="isExpanded"
-        class="text-gray-500 ml-1"
-      >
-        {{ Array.isArray(data) ? "]" : "}" }}
-      </div>
+  <!-- Objects/Arrays: block div -->
+  <div
+    v-else
+    class="font-mono text-xs"
+  >
+    <div
+      class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 inline-flex items-center gap-1 rounded px-1 select-none"
+      @click="toggle"
+    >
+      <UIcon
+        :name="isExpanded ? 'i-lucide-chevron-down' : 'i-lucide-chevron-right'"
+        class="w-3 h-3 text-gray-400"
+      />
+      <span class="text-gray-500">{{ Array.isArray(data) ? '[' : '{' }}</span>
       <span
-        v-else
-        class="text-gray-500"
-      >
-        {{ Array.isArray(data) ? "]" : "}" }}
-      </span>
+        v-if="!isExpanded"
+        class="text-gray-400 italic text-[10px] mx-1"
+      >{{ preview }}</span>
     </div>
+
+    <div
+      v-if="isExpanded"
+      class="pl-4 border-l border-gray-100 dark:border-gray-800 ml-1"
+    >
+      <div
+        v-for="(value, key) in data"
+        :key="key"
+        class="my-0.5"
+      >
+        <span
+          class="text-blue-600 dark:text-blue-400 mr-1"
+          v-html="`${highlight(String(key))}:`"
+        />
+        <JsonViewer
+          :data="value"
+          :depth="depth + 1"
+          :search-query="searchQuery"
+        />
+      </div>
+    </div>
+
+    <div
+      v-if="isExpanded"
+      class="text-gray-500 ml-1"
+    >
+      {{ Array.isArray(data) ? ']' : '}' }}
+    </div>
+    <span
+      v-else
+      class="text-gray-500"
+    >
+      {{ Array.isArray(data) ? ']' : '}' }}
+    </span>
   </div>
 </template>
