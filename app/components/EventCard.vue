@@ -97,7 +97,7 @@ const copyToClipboard = () => {
       </div>
       <pre
         v-else
-        class="text-xs font-mono text-gray-700 dark:text-gray-300 whitespace-pre-wrap"
+        class="text-sm font-mono text-gray-700 dark:text-gray-300 whitespace-pre-wrap"
         v-html="highlightText(event.data)"
       />
     </div>

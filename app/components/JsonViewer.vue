@@ -61,7 +61,7 @@ const highlight = (text: string) => {
     :value="data"
   >
     <span
-      class="font-mono text-xs"
+      class="font-mono text-sm"
       :class="valueClasses"
     >
       <span
@@ -78,7 +78,7 @@ const highlight = (text: string) => {
   <!-- Objects/Arrays: block div -->
   <div
     v-else
-    class="font-mono text-xs"
+    class="font-mono text-sm"
   >
     <div
       class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 inline-flex items-center gap-1 rounded px-1 select-none"
@@ -97,7 +97,7 @@ const highlight = (text: string) => {
 
     <div
       v-if="isExpanded"
-      class="pl-4 border-l border-gray-100 dark:border-gray-800 ml-1"
+      class="pl-8 border-l border-gray-100 dark:border-gray-800 ml-1"
     >
       <div
         v-for="(value, key) in data"
@@ -118,7 +118,7 @@ const highlight = (text: string) => {
 
     <div
       v-if="isExpanded"
-      class="text-gray-500 ml-1"
+      class="text-gray-500 ml-5"
     >
       {{ Array.isArray(data) ? ']' : '}' }}
     </div>
